@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anoma Intent‑Centric Prototype – Demo</title>
+    <link rel="icon" href="assets/img/anoma-logo.svg" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* === Demo Modal === */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);
+backdrop-filter: blur(6px); display:none; align-items:center; justify-content:center; z-index:80}
+.modal-overlay.open{display:flex; animation:modalFade .2s ease-out}
+.modal-shell{width:min(1080px,92vw); aspect-ratio:16/9; background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+border:1px solid rgba(255,255,255,.12); border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,.55); position:relative; overflow:hidden}
+.modal-frame{position:absolute; inset:0; padding:10px}
+.modal-video{width:100%; height:100%; object-fit:cover; border-radius:14px}
+.modal-close{position:absolute; top:10px; right:10px; width:40px; height:40px; border-radius:12px; border:1px solid rgba(255,255,255,.2);
+background:rgba(0,0,0,.35); color:#fff; font-size:24px; line-height:40px; text-align:center; cursor:pointer}
+.modal-close:hover{transform:scale(1.04)}
+@keyframes modalFade{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:translateY(0)}}</style>
+<style>
+/* === Intent bullets === */
+.intent-explainer{margin-top:12px}
+.intent-bullets{list-style:none; padding:0; margin:10px 0 0 0; display:grid; gap:8px; text-align: left;}
+.intent-bullets li{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:10px 12px; border-radius:12px}
+.intent-bullets b{font-weight:700}
+</style>
+</head>
+<body>
+    <!-- Floating Particles Background -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/img/anoma-logo.svg" alt="Anoma" class="anoma-logo">
+                <span class="logo-text">Anoma</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#intents" class="nav-link">Intents</a>
+                <a href="#prototype" class="nav-link">Prototype</a>
+                <a href="#community" class="nav-link">Community</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="magic-text">MAGES OF ANOMA</span>
+                    <br>
+                    <span class="subtitle">Intent‑Centric Prototype Demo</span>
+                </h1>
+                <p class="hero-description">This click‑through demo showcases an <b>intent‑centric</b> approach: you declare what you want, and a solver figures out how. No wallets, no live contracts.
+
+
+</p>
+                <div class="hero-buttons">
+                    
+                    <button class="btn-secondary" data-watch-demo="true">
+                        <i class="fas fa-play"></i>
+                        Watch AnomaPay Introduction
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="magic-orb">
+                    <div class="orb-inner">
+                        <div class="intent-symbols">
+                            <img src="assets/img/anoma-logo.svg" alt="Anoma" class="symbol-logo anoma-logo-orb">
+                            <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" class="symbol-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IjYyNzVFQSIvPgo8cGF0aCBkPSJNMTIgMjRMMTguNSAxNi41TDEyIDEyTDUuNSAxNi41TDEyIDI0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+'">
+                            <img src="https://assets.coingecko.com/coins/images/16724/large/osmo.png" alt="Osmosis" class="symbol-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiM4QzQ0RjUiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                            <img src="https://basescan.org/assets/base/images/svg/logos/chain-light.svg?v=25.9.1.0" alt="Base" class="symbol-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iIzAwNTJGRiIvPgo8cGF0aCBkPSJNOCAxMkgxNk0xMiA4VjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intents Section -->
+    <section id="intents" class="intents">
+        <div class="container">
+            <h2 class="section-title">Simplifying Web3 with Intents</h2>
+            <p class="section-subtitle">This prototype demonstrates how <b>intent-centric</b> design can simplify everyday Web3 experiences.</p>
+            
+            <div class="quest-cards">
+                <div class="quest-card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>Define the Intent</h3>
+                    <p>State the user goal (e.g., “Swap 100 USDC from L2 to the best yield on Cosmos”) as a single intent.</p>
+                </div>
+                <div class="quest-card">
+                    <div class="card-icon">👥</div>
+                    <h3>Design the Solver</h3>
+                    <p>Explain how a solver matches intents: constraints, counter‑parties, routing, and failure handling.</p>
+                </div>
+                <div class="quest-card">
+                    <div class="card-icon">🪄</div>
+                    <h3>Show the Flow</h3>
+                    <p>Illustrate the intent → discovery → settlement lifecycle. Keep it chain‑agnostic and wallet‑minimal.</p>
+                </div>
+            </div>
+
+            <div class="rewards-section">
+                <h3>Anoma Intent‑Centric Flow</h3>
+                <div class="rewards">
+        <div class="intent-explainer">
+          <ul class="intent-bullets">
+            <li>▫️ <b>Intent declaration:</b> The user expresses their goal and constraints in a single sentence.</li>
+            <li>▫️ <b>Discovery:</b> The intent is published; suitable counterparties and routes are found.</li>
+            <li>▫️ <b>Solver plan:</b> One or more solvers propose the best execution plan.</li>
+            <li>▫️ <b>Matching & composition:</b> Intents are combined/matched atomically where possible.</li>
+            <li>▫️ <b>Settlement:</b> The result is verified with proof/record; in case of failure, a clean rollback occurs.</li>
+            <li>▫️ <b>Security:</b> MEV/abuse protections, rate limits, policy constraints.</li>
+            <li>▫️ <b>User experience:</b> Minimal approvals/signatures; the user thinks about the outcome, not the steps.</li>
+          </ul>
+        </div>
+        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Prototype Section -->
+    <section id="prototype" class="prototype">
+        <div class="container">
+            <h2 class="section-title">INTENT CENTRIC PROTOTYPE</h2>
+            <p class="section-subtitle">Try an intent builder UI that demonstrates how users declare goals while solvers figure out execution.</p>
+            
+            <div class="prototype-container">
+                <div class="intent-builder">
+                    <h3>🔮 Cast Your Intent</h3>
+                    <div class="intent-form">
+                        <div class="form-group">
+                            <label>What do you want to achieve?</label>
+                            <select id="intent-type" class="intent-select">
+                                <option value="swap">Swap tokens across chains</option>
+                                <option value="yield">Maximize yield farming</option>
+                                <option value="nft">Trade NFTs seamlessly</option>
+                                <option value="lend">Lend/borrow assets</option>
+                                <option value="custom">Custom intent...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>From Chain</label>
+                            <div class="chain-selector">
+                                <div class="chain-option active" data-chain="ethereum">
+                                    <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IjYyNzVFQSIvPgo8cGF0aCBkPSJNMTIgMjRMMTguNSAxNi41TDEyIDEyTDUuNSAxNi41TDEyIDI0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+'">
+                                    <span>Ethereum</span>
+                                </div>
+                                <div class="chain-option" data-chain="polygon">
+                                    <img src="https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png" alt="Polygon" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiM4MjQ3RjUiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Polygon</span>
+                                </div>
+                                <div class="chain-option" data-chain="osmosis">
+                                    <img src="https://assets.coingecko.com/coins/images/16724/large/osmo.png" alt="Osmosis" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiM4QzQ0RjUiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Osmosis</span>
+                                </div>
+                                <div class="chain-option" data-chain="arbitrum">
+                                    <img src="https://assets.coingecko.com/coins/images/16547/large/photo_2023-03-29_21.47.00.jpeg" alt="Arbitrum" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMyRkY5RkYiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Arbitrum</span>
+                                </div>
+                                <div class="chain-option" data-chain="optimism">
+                                    <img src="https://assets.coingecko.com/coins/images/25244/large/Optimism.png" alt="Optimism" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNGRjA0MjEiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Optimism</span>
+                                </div>
+                                <div class="chain-option" data-chain="base">
+                                    <img src="https://basescan.org/assets/base/images/svg/logos/chain-light.svg?v=25.9.1.0" alt="Base" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iIzAwNTJGRiIvPgo8cGF0aCBkPSJNOCAxMkgxNk0xMiA4VjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+'">
+                                    <span>Base</span>
+                                </div>
+                                <div class="chain-option" data-chain="avalanche">
+                                    <img src="https://assets.coingecko.com/coins/images/12559/large/Avalanche_Circle_RedWhite_Trans.png" alt="Avalanche" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNFODQ0MzEiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Avalanche</span>
+                                </div>
+                                <div class="chain-option" data-chain="bsc">
+                                    <img src="https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png" alt="BSC" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNGM0I1MDAiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>BSC</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>To Chain</label>
+                            <div class="chain-selector">
+                                <div class="chain-option" data-chain="ethereum">
+                                    <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IjYyNzVFQSIvPgo8cGF0aCBkPSJNMTIgMjRMMTguNSAxNi41TDEyIDEyTDUuNSAxNi41TDEyIDI0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+'">
+                                    <span>Ethereum</span>
+                                </div>
+                                <div class="chain-option active" data-chain="polygon">
+                                    <img src="https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png" alt="Polygon" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiM4MjQ3RjUiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Polygon</span>
+                                </div>
+                                <div class="chain-option" data-chain="osmosis">
+                                    <img src="https://assets.coingecko.com/coins/images/16724/large/osmo.png" alt="Osmosis" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiM4QzQ0RjUiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Osmosis</span>
+                                </div>
+                                <div class="chain-option" data-chain="arbitrum">
+                                    <img src="https://assets.coingecko.com/coins/images/16547/large/photo_2023-03-29_21.47.00.jpeg" alt="Arbitrum" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMyRkY5RkYiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Arbitrum</span>
+                                </div>
+                                <div class="chain-option" data-chain="optimism">
+                                    <img src="https://assets.coingecko.com/coins/images/25244/large/Optimism.png" alt="Optimism" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNGRjA0MjEiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Optimism</span>
+                                </div>
+                                <div class="chain-option" data-chain="base">
+                                    <img src="https://basescan.org/assets/base/images/svg/logos/chain-light.svg?v=25.9.1.0" alt="Base" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iNCIgZmlsbD0iIzAwNTJGRiIvPgo8cGF0aCBkPSJNOCAxMkgxNk0xMiA4VjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+'">
+                                    <span>Base</span>
+                                </div>
+                                <div class="chain-option" data-chain="avalanche">
+                                    <img src="https://assets.coingecko.com/coins/images/12559/large/Avalanche_Circle_RedWhite_Trans.png" alt="Avalanche" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNFODQ0MzEiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>Avalanche</span>
+                                </div>
+                                <div class="chain-option" data-chain="bsc">
+                                    <img src="https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png" alt="BSC" class="chain-logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNGM0I1MDAiLz4KPHBhdGggZD0iTTEyIDJMMTggNkwxMiAxMEw2IDZMMTIgMloiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg=='">
+                                    <span>BSC</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <div class="amount-input">
+                                <input type="number" placeholder="0.00" id="amount">
+                                <select id="token">
+                                    <option value="XAN">XAN</option>
+                                    <option value="ETH">ETH</option>
+                                    <option value="USDC">USDC</option>
+                                    <option value="USDT">USDT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Transaction Fee</label>
+                            <div class="fee-display">
+                                <div class="fee-info">
+                                    <span class="fee-amount">0.001 XAN</span>
+                                    <span class="fee-label">Network Fee (XAN)</span>
+                                </div>
+                                <div class="fee-breakdown">
+                                    <div class="fee-item">
+                                        <span class="fee-type">Base Fee:</span>
+                                        <span class="fee-value" id="base-fee">0.0008 XAN</span>
+                                    </div>
+                                    <div class="fee-item" id="bridge-fee" style="display: none;">
+                                        <span class="fee-type">Bridge Fee:</span>
+                                        <span class="fee-value">0.0005 XAN</span>
+                                    </div>
+                                    <div class="fee-item">
+                                        <span class="fee-type">Amount Fee:</span>
+                                        <span class="fee-value" id="amount-fee">0.0001 XAN</span>
+                                    </div>
+                                </div>
+                                <div class="fee-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Fees are paid in XAN tokens</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="cast-intent-btn">
+                            <i class="fas fa-magic"></i>
+                            Cast Intent Spell
+                        </button>
+                    </div>
+                </div>
+
+                <div class="intent-preview">
+                    <h3>✨ Intent Preview</h3>
+                    <div class="preview-card">
+                        <div class="preview-content">
+                            <div class="intent-flow">
+                                <div class="flow-step">
+                                    <div class="step-icon">🔮</div>
+                                    <div class="step-text">
+                                        <strong>Intent Declared</strong>
+                                        <p>User wants to swap tokens</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-icon">⚡</div>
+                                    <div class="step-text">
+                                        <strong>Anoma Processes</strong>
+                                        <p>Finding optimal route</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-icon">✨</div>
+                                    <div class="step-text">
+                                        <strong>Intent Fulfilled</strong>
+                                        <p>Cross-chain swap complete</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <h2 class="section-title">JOIN THE ANOMAGES</h2>
+            <p class="section-subtitle">Let's build for Anoma. This is a demo; no wallet connection or live transactions required.</p>
+            
+            <div class="community-stats">
+                <div class="stat-item">
+                    <div class="stat-number">1,337</div>
+                    <div class="stat-label">Active Mages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">Intent Prototypes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Possibilities</div>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://x.com/anoma" target="_blank" class="social-link twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 640 640"><path fill="#ffffff" d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/></svg>
+                    <span>Follow @Anoma</span>
+                </a>
+                <a href="https://anoma.net/" target="_blank" class="social-link website">
+                    <i class="fas fa-globe"></i>
+                    <span>Visit Website</span>
+                </a>
+                <a href="https://discord.com/invite/anoma" target="_blank" class="social-link discord">
+                    <i class="fab fa-discord"></i>
+                    <span>Join Community</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/img/x-logo.png" alt="Anoma" class="anoma-logo">
+                    <span>powered by <a style="color: #4ecdc4; text-decoration: none;" href>emir_ethh</a></span>
+                </div>
+                <p class="footer-text">Stay with intent. Stay with Anoma.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+
+    <!-- Demo Video Modal -->
+    <div class="modal-overlay" id="demoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Watch demo video">
+      <div class="modal-shell" role="document">
+        <button class="modal-close" id="demoClose" aria-label="Close demo">×</button>
+        <div class="modal-frame">
+          <video id="demoVideo" class="modal-video" controls playsinline>
+            <source src="assets/video/anomapay-demo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+    
+
+<script>
+(function(){
+  function $(q){return document.querySelector(q);}
+  function $$ (q){return Array.from(document.querySelectorAll(q));}
+  const modal = $("#demoModal");
+  const closeBtn = $("#demoClose");
+  const video = $("#demoVideo");
+  function openModal(){
+    if(!modal) return;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+    try { video && video.play(); } catch(_){}
+  }
+  function closeModal(){
+    if(!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden","true");
+    try { if(video){ video.pause(); video.currentTime = 0; } } catch(_){}
+  }
+  // Bind buttons that say "Watch Demo" or have data-watch-demo
+  $$("a,button").forEach(function(el){
+    const text = (el.textContent || "").trim().toLowerCase();
+    if(el.dataset.watchDemo === "true" || text === "watch demo"){
+      el.addEventListener("click", function(e){ e.preventDefault(); openModal(); });
+    }
+  });
+  closeBtn && closeBtn.addEventListener("click", closeModal);
+  modal && modal.addEventListener("click", function(e){ if(e.target === modal) closeModal(); });
+  window.addEventListener("keydown", function(e){ if(e.key === "Escape") closeModal(); });
+})();
+</script>
+
+</body>
+</html>
