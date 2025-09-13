@@ -1,4 +1,4 @@
-# Anoma Intent Centric Prototype
+# Anoma Intent Centric Prototype Demo
 
 I built this site to show how the intent-centric approach can simplify everyday Web3 experiences. It is not connected to a live network, there are no wallets or live transactions. My goal was to demonstrate that the user only needs to say “what they want to do” and let the system imagine the rest.
 
