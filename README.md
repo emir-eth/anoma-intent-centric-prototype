@@ -4,7 +4,7 @@ I built this site to show how the intent-centric approach can simplify everyday 
 
 ▫️ Intro section: I added a headline and a “Watch AnomaPay Introduction” button. From here you can watch the AnomaPay introduction video.<br>
 ▫️ The Intents section: Here I explained the purpose of the prototype. In other words, I highlighted how the process can be simplified with a single intent instead of step-by-step actions.<br>
-▫️ Cards:<br>
+▫️ Cards:
 - Define the Intent: The user specifies their goal.<br>
 - Design the Solver: I show how this goal could be solved.<br>
 
