@@ -15,3 +15,5 @@ Show the Flow: I present the flow of the process from start to finish in a simpl
 ▫️ Community section: With the message “Let’s build for Anoma” I emphasized the community aspect. I also added links to X, the website, and Discord.<br>
 
 With this demo, I wanted to give people the message: “think about the outcome, not the steps.”
+
+My Discord: emirkostik
